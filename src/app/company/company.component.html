@@ -1,0 +1,24 @@
+
+
+  <div class="row ">
+      <div class="input-field inline col s12 m6 l5 xl2 offset-m3 offset-l4 offset-xl5">
+        <input id="txtCompanyCode" type="text" class="validate" [(ngModel)]="compCode" minlength="1" >
+        <label for="txtCompanyCode" data-error="please input Company Code" >CompanyCode</label>
+      </div>
+
+  </div>
+  <div class="row ">
+    <div class="input-field col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
+   
+      <input id="txtCompanyName" type="text" class="validate" [(ngModel)]="compName" minlength="1"  > 
+      <label for="txtCompanyName" data-error="please input Company Name">CompanyName</label>
+    </div>
+  </div>
+   <div class="row">
+     <div class="col s6">
+    <a class="btn col s12 m6 l2  blue right" (click)="onSave()" >Save</a>
+    </div>
+    <div class="col s6">
+    <a class="btn col s12 m6 l2  blue left" (click)="onBack()" >Back</a>
+    </div>
+   </div>

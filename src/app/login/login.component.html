@@ -1,0 +1,27 @@
+
+<div class="row login-box login-inbox">
+      <div class="center responsive-img">
+        <img class="circle" src="http://lorempixel.com/150/150/" alt="">
+      </div>
+  </div>
+  <div class="row ">
+      <div class="input-field inline col s12 m6 l5 xl2 offset-m3 offset-l4 offset-xl5">
+         <i class="material-icons prefix">account_box</i>
+        <input id="email" type="email" class="validate" [(ngModel)]="email" minlength="1" >
+        <label for="email" data-error="please input valid email." data-success="right">Email</label>
+      </div>
+
+  </div>
+  <div class="row ">
+    <div class="input-field col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
+      <i class="material-icons prefix">lock</i>
+      <input id="password" type="password" class="validate" [(ngModel)]="password" minlength="3" pattern="\d{3,8}" > 
+      <label for="password" data-error="password invalid">Password</label>
+    </div>
+  </div>
+   <div class="row" >
+     <a class="waves-effect waves-light btn col s8 m6 l5 xl2 offset-s2 offset-m3 offset-l4 offset-xl5 blue" (click)="doLogin()" >Sign On</a>
+   
+  </div>
+<h1>{{email}}</h1>
+<h1>{{password}}</h1>
