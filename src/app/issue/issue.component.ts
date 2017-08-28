@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IssueService } from '../issue.service'
 @Component({
@@ -8,7 +8,7 @@ import { IssueService } from '../issue.service'
   providers:[IssueService]
 
 })
-export class IssueComponent implements OnInit {
+export class IssueComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
@@ -137,5 +137,20 @@ export class IssueComponent implements OnInit {
   }
   onBack() {
     this.router.navigate(['support', 'issue-list']);
+  }
+
+  ngAfterViewInit(){
+    (function($){
+      $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false // Close upon selecting a date,
+      });
+      $('input#input_text, textarea#textarea1').characterCounter();
+    }); // end of jQuery name space
+      
   }
 }
