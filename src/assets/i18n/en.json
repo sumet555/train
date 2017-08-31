@@ -26,7 +26,8 @@
         "customer":"Customer",
         "status":"Status",
         "edit":"Edit",
-        "delete":"Delete"
+        "delete":"Delete",
+        "attach":"Attach"
     },
     "company":{
         "code":"Code",
@@ -41,6 +42,17 @@
         "password":"Password",
         "re_password":"Re-Password",
         "mobile":"Mobile Phone",
+        "picture":"Picture"
+    },
+    "issue":{
+        "issueno":"Issue No",
+        "title":"Title",
+        "description":"Description",
+        "company":"Company",
+        "customer":"Customer",
+        "user":"User",
+        "date":"Date",
+        "status":"Status",
         "picture":"Picture"
     }
     

@@ -4,6 +4,7 @@ import { IssueService } from '../issue.service';
 import{Issue} from '../shared/issue/issue';
 import { UploadService } from '../shared/user/upload.service';
 import { environment } from '../../environments/environment';
+import * as shortid from 'shortid';
 @Component({
   selector: 'app-issue',
   templateUrl: './issue.component.html',
@@ -23,15 +24,8 @@ imgUrl;
     this.issue=new Issue();
    }
 
-  // company:string="";
-  // customer:string="";
-  // title:string;
-  // desc:string;
-  // user:string="";
-  // status:string="";
-  // subtype:string="";
-  // _datetime:string="";
-  id:object;
+ 
+  id:string;
   filesToUpload = [];
   custData = [];
   compData=[];
@@ -43,6 +37,7 @@ imgUrl;
     this.GetCompany();
     this.GetCust();
     this.GetUser();
+    this.issue.issueno=shortid.generate();
     this.activatedRoute.params.subscribe(params => {
       if (params['id']) {
         let id = params["id"];
@@ -124,12 +119,21 @@ imgUrl;
         });
     }
     else {
+     
       this.issueService.addItem(this.issue).subscribe(
         data => { 
           //this.id = data.insertedIds;
           //this.upload();
           Materialize.toast('Add Item Complete', 3000);
-          this.router.navigate(['support', 'issue-list']);
+          // let id=data.insertedIds;
+          // this.issueService.loadItemByID(id).subscribe(
+          //   issue => {
+               this.router.navigate(['support', 'issue-attach',this.issue.issueno]);
+          //   },
+          //   err => {
+          //     console.log(err);
+          //   });
+          
         },
         err => {
           console.log(err);

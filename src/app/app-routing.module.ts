@@ -12,6 +12,8 @@ import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { IssueComponent } from './issue/issue.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
+import { IssueAttachComponent } from './issue-attach/issue-attach.component';
+
 import{  LoginGuardService} from './login-guard.service'
 
 const routes: Routes = [
@@ -55,6 +57,10 @@ const routes: Routes = [
       path:'issue/:id',component:IssueComponent
     },{
       path:'issue-list',component:IssueListComponent
+    },{
+      path:'issue-attach',component:IssueAttachComponent
+    },{
+      path:'issue-attach/:id',component:IssueAttachComponent
     }]
 
   }

@@ -20,7 +20,7 @@ imgUrl;
     private userService: UserService,
     private uploadService: UploadService
      ) { 
-       this.user=new User()
+       this.user=new User();
      }
      id:object;
      filesToUpload = [];

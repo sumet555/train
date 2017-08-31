@@ -28,7 +28,8 @@
             "status":"สถานะ",
             "edit":"แก้ไข",
             "delete":"ลบ",
-            "search":"ค้นหา"
+            "search":"ค้นหา",
+            "attach":"แนบไฟล์"
         },
         "company":{
             "code":"รหัส",
@@ -43,6 +44,17 @@
             "password":"รหัสผ่าน",
             "re_password":"รหัสผ่านอีกครั้ง",
             "mobile":"เบอร์โทรศัพท์",
+            "picture":"รูปภาพ"
+        },
+        "issue":{
+            "issueno":"Issue No",
+            "title":"หัวเรื่อง",
+            "description":"รายละเอียด",
+            "company":"บริษัท",
+            "customer":"ลูกค้า",
+            "user":"ผู้ใช้งาน",
+            "date":"วันที่",
+            "status":"สถานะ",
             "picture":"รูปภาพ"
         }
 }

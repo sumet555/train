@@ -38,6 +38,9 @@ export class IssueListComponent implements OnInit {
   onEditbtnClick(id) {
     this.router.navigate(['support', 'issue', id]);
   }
+  onUploadImage(issueno){
+    this.router.navigate(['support', 'issue-attach', issueno]);
+  }
   onDelbtnClick(id) {
     this.issueService.delItem(id).subscribe(
       datas => {

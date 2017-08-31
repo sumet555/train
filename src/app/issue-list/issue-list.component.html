@@ -21,6 +21,7 @@
       <th>{{'issuelist.status'|translate}}</th>
         <th>{{'issuelist.edit'|translate}}</th>
       <th>{{'issuelist.delete'|translate}}</th>
+      <th>{{'issuelist.attach'|translate}}</th>
     </tr>
   </thead>
 
@@ -36,6 +37,9 @@
       <th>
         <a class="btn-floating btn red" (click)="onDelbtnClick(issue._id)"><i class="material-icons">delete</i></a>
       </th>
+      <th>
+          <a class="btn-floating btn green" (click)="onUploadImage(issue.issueno)"><i class="material-icons">attach_file</i></a>
+        </th>
     </tr>
   </tbody>
 </table>
