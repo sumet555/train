@@ -1,4 +1,4 @@
-<div class="row ">
+<!-- <div class="row ">
   <div class="input-field inline col s12 m6 l5 xl2 offset-m3 offset-l4 offset-xl5">
     <input id="txtusername" type="text" class="validate" [(ngModel)]="username" minlength="1">
     <label for="txtusername" data-error="please input Username">Username</label>
@@ -11,7 +11,7 @@
     <input id="txtpassword" type="password" class="validate" required  [(ngModel)]="password" minlength="3">
     <label for="txtpassword" data-error="please input Password">Password</label>
   </div>
-</div>
+</div> -->
 <!-- <div class="row ">
   <div class="input-field col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
     <ul id="ddlType" class="dropdown-content">
@@ -25,7 +25,7 @@
   </div> 
 </div> -->
 
-    <div class="row ">
+    <!-- <div class="row ">
         <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
               <label>User Type</label>
               <select class="browser-default"   [(ngModel)]="usertype" >
@@ -45,7 +45,7 @@
               
              </div> 
       
-   </div>
+   </div> -->
   
 <!-- <div class="row ">
     <div class="input-field col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
@@ -72,11 +72,61 @@
     </div>
 </div> -->
 
-<div class="row">
-  <div class="col s6">
-    <a class="btn col s12 m6 l2  blue right" (click)="onSave()">Save</a>
+
+
+
+
+  <div class="row ">
+    <div class="input-field inline col s12 m6">
+      <input id="txtFirstName" type="text" class="validate" [(ngModel)]="user.firstName" materialize="updateTextFields" minlength="1">
+      <label for="txtFirstName" data-error="please input FirstName">{{'user.firstname'| translate}}</label>
+    </div>
+    <div class="input-field inline col s12 m6">
+        <input id="txtLastName" type="text" class="validate" [(ngModel)]="user.lastName" materialize="updateTextFields" minlength="1">
+        <label for="txtLastName" data-error="please input LastName">{{'user.lastname'| translate}}</label>
+      </div>
+   
   </div>
-  <div class="col s6">
-    <a class="btn col s12 m6 l2  blue left" (click)="onBack()">Back</a>
+  <div class="row ">
+      <div class="input-field inline col s12 m6">
+        <input id="email" type="email" class="validate" [(ngModel)]="user.email" minlength="1" materialize="updateTextFields" [placeholder]="'login.holderemail'| translate">
+        <label for="email" [attr.data-error]="'login.emailerror'| translate" data-success="right">{{'login.email'| translate}}</label>
+      </div>
+      <div class="input-field inline col s12 m6">
+          <input id="mobile" type="text" class="validate" [(ngModel)]="user.mobile" materialize="updateTextFields" minlength="1">
+          <label for="mobile" data-error="please input Mobile Phone">{{'user.mobile'| translate}}</label>
+        </div>
   </div>
-</div>
+  <div class="row ">
+      <div class="input-field col s12 m6">
+        <input id="txtpassword" type="password" class="validate" required  [(ngModel)]="user.password" materialize="updateTextFields" minlength="3">
+        <label for="txtpassword" data-error="please input Password">{{'user.password'| translate}}</label>
+      </div>
+      <div class="input-field col s12 m6">
+          <input id="txtrepassword" type="password" class="validate" required  [(ngModel)]="user.re_password" materialize="updateTextFields" minlength="3">
+          <label for="txtrepassword" data-error="please input Password">{{'user.re_password'| translate}}</label>
+        </div>
+    </div>
+    <form>
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>{{'user.picture' | translate}}</span>
+            <input type="file" name="avater" (change)="fileChangeEvent($event); readUrl($event);">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+      </form>
+      <div class="card-image">
+        <img [src]="imgUrl">
+      </div>
+    <div class="row">
+        <div class="col s6">
+          <a class="btn col s12 m6 l2  blue right" (click)="onSave()">Save</a>
+        </div>
+        <div class="col s6">
+          <a class="btn col s12 m6 l2  blue left" (click)="onBack()">Back</a>
+        </div>
+      </div>
+      <!-- {{user|json}} -->

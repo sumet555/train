@@ -7,18 +7,25 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class IssueService {
-
-  constructor(private http:Http) { }
+options;
+  constructor(private http:Http) { 
+    let headers = new Headers({ 'Content-Type': 'application/json','Authorization':'bearer '+ localStorage.getItem('token')}); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers }); 
+    this.options=options;
+  }
 
   loadCompany(): Observable<any[]> {
-    return this.http.get(`${environment.apiUrl}/company`)
+    // let headers = new Headers({ 'Content-Type': 'application/json','Authorization':'bearer '+ localStorage.getItem('token')}); // ... Set content type to JSON
+    // let options = new RequestOptions({ headers: headers }); // Create a request option
+    return this.http.get(`${environment.apiUrl}/company`,this.options)
       .map((res: Response) => {
         return   res.json();
       })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   loadCustomer(): Observable<any[]> {
-    return this.http.get(`${environment.apiUrl}/customer`)
+    
+    return this.http.get(`${environment.apiUrl}/customer`,this.options)
       .map((res: Response) => {
         return   res.json();
       })

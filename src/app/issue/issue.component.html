@@ -1,83 +1,108 @@
 <div class="row ">
-  <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
-        <label>Company</label>
-        <select class="browser-default"   [(ngModel)]="company" >
-            <option value="" disabled selected [ngValue]="">Choose your Company</option>
-          <option   *ngFor="let comp of compData" [ngValue]="comp.compName">{{comp.compName}}</option>
+  <div class="input-field inline col s12 m6">
+    <input id="txtIssueNo" type="text" class="validate" [(ngModel)]="issue.issueno" materialize="updateTextFields" minlength="1">
+    <label for="txtIssueNo" data-error="please input Issue No">{{'issue.issueno'| translate}}</label>
+  </div>
+  <div class="input-field inline col s12 m6">
+    <input id="txtTitle" type="text" class="validate" [(ngModel)]="issue.title" materialize="updateTextFields" minlength="1">
+    <label for="txtTitle" data-error="please input Title">{{'issue.title'| translate}}</label>
+  </div>
+
+</div>
+<!-- <div class="row">
+  <div class="input-field col s12 ">
+    <textarea id="textarea1" class="materialize-textarea" data-length="120" class="validate" required [(ngModel)]="issue.description"
+      minlength="1"></textarea>
+    <label for="textarea1">{{'issue.description'| translate}}</label>
+  </div>
+</div> -->
+<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" name="textarea1" [(ngModel)]="issue.description" class="materialize-textarea" data-length="120" minlength="1"></textarea>
+          <label for="textarea1">{{'issue.description'| translate}}</label>
+        </div>
+      </div>
+    </form>
+  </div>
+<div class="row ">
+  <div class="input-field inline col s12 m6">
+    <select [(ngModel)]="issue.company" materialize="material_select" [materializeSelectOptions]="compData"> 
+      <option value="" disabled selected>Choose your option</option>
+      <option *ngFor="let comp of compData;" 
+    [value]="comp.compName">{{comp.compName}}</option>
+    </select>
+    <label>{{'company.code' | translate}}</label>
+  </div>
+
+  <div class="input-field inline col s12 m6">
+    <select [(ngModel)]="issue.customer" materialize="material_select" [materializeSelectOptions]="custData"> 
+      <option value="" disabled selected>Choose your option</option>
+      <option *ngFor="let cust of custData;" 
+    [value]="cust.customername">{{cust.customername}}</option>
+    </select>
+    <label>{{'customer.name' | translate}}</label>
+  </div>
+</div>
+
+<div class="row ">
+    <div class="input-field inline col s12 m6">
+        <select [(ngModel)]="issue.user" materialize="material_select" [materializeSelectOptions]="custData"> 
+          <option value="" disabled selected>Choose your option</option>
+          <option *ngFor="let usr of userData;" 
+        [value]="usr.firstName">{{usr.firstName}}</option>
         </select>
-      </div> 
+        <label>{{'issue.user' | translate}}</label>
+      </div>
+
+  <div class="input-field inline col s12 m6">
+    <label>Select Date</label>
+    <input type="text" [(ngModel)]="issue.date" materialize="pickadate" 
+    [materializeParams]="[{closeOnSelect:true,format:'dd/mm/yyyy'}]"  class="datepicker">
+  </div>
 </div>
 
-<div class="row ">
-  <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
-        <label>Select Date</label>
-        <input type="text"  [(ngModel)]="_datetime"  class="datepicker">
-      </div> 
-</div>
 
 <div class="row ">
-  <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
-        <label>Customer</label>
-        <select class="browser-default"   [(ngModel)]="customer" >
-            <option value="" disabled selected [ngValue]="">Choose your Customer</option>
-          <option   *ngFor="let cust of custData" [ngValue]="cust.customername">{{cust.customername}}</option>
+    <div class="input-field inline col s12 m6">
+        <select [(ngModel)]="issue.status" materialize="material_select" [materializeSelectOptions]="statusData"> 
+          <option value="" disabled selected>Choose your option</option>
+          <option *ngFor="let status of statusData;" 
+        [value]="status.status">{{status.status}}</option>
         </select>
-      </div> 
+        <label>{{'issue.status' | translate}}</label>
+      </div>
+ 
 </div>
-
-<div class="row ">
-  <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
-        <label>User</label>
-        <select class="browser-default"   [(ngModel)]="user" >
-            <option value="" disabled selected [ngValue]="">Choose your User</option>
-          <option   *ngFor="let user of userData" [ngValue]="user.username">{{user.username}}</option>
-        </select>
-      </div> 
+<div class="row">
+    <form action="#">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>{{'issue.picture' | translate}}</span>
+            <input type="file" multiple>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+          </div>
+        </div>
+      </form>
 </div>
-
-<div class="row ">
+<!-- <div class="row ">
   <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
-           <label>Status</label>
-           <select  class="browser-default"  [(ngModel)]="status" >
-              <option value="" disabled selected [ngValue]="">Choose your Status</option>
-                <option   *ngFor="let c of statusData" [ngValue]="c.status">{{c.status}}</option>
-              
-              </select>
-          
-         </div> 
-  
-</div>
-
-<div class="row ">
-  <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
-           <label>Sub Type</label>
-           <select  class="browser-default"  [(ngModel)]="subtype" >
+    <label>Sub Type</label>
+    <select class="browser-default" [(ngModel)]="subtype">
               <option value="" disabled selected [ngValue]="">Choose your Sub Type</option>
                 <option   *ngFor="let c of subtypeData" [ngValue]="c.id">{{c.id}}</option>
               
               </select>
-          
-         </div> 
-  
-</div>
 
-<div class="row ">
-  <div class="input-field inline col s12 m6 l5 xl2 offset-m3 offset-l4 offset-xl5">
-    <input id="txttitle" type="text" class="validate" [(ngModel)]="title" minlength="1">
-    <label for="title" data-error="please input Title">Title</label>
   </div>
 
-</div>
-<div class="row ">
-  <div class="input-field col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
+</div> -->
 
-    <!-- <input id="txtdesc" type="text" class="validate" required  [(ngModel)]="desc" minlength="1">
-    <label for="txtdesc" data-error="please input Description">Description</label> -->
-    <textarea id="textarea1" class="materialize-textarea" data-length="120" class="validate" required 
-    [(ngModel)]="desc"  minlength="1"></textarea>
-   <label for="textarea1">Description</label>
-  </div>
-</div>
+
+
 
 
 
@@ -90,4 +115,4 @@
     <a class="btn col s12 m6 l2  blue left" (click)="onBack()">Back</a>
   </div>
 </div>
-
+{{issue|json}}

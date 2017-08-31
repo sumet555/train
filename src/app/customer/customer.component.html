@@ -14,16 +14,41 @@
 </div>
 
 
-    <div class="row ">
+    <!-- <div class="row ">
         <div class="col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
               <label>Company</label>
-              <select class="browser-default"   [(ngModel)]="company" >
+              <select class="browser-default"   [(ngModel)]="company" materialize="material_select" [materializeSelectOptions]="compData" >
                   <option value="" disabled selected [ngValue]="">Choose your Company</option>
                 <option   *ngFor="let comp of compData" [ngValue]="comp.compName">{{comp.compName}}</option>
               </select>
             </div> 
-   </div>
-  
+   </div> -->
+   <div>
+      <div class="row ">
+    <div class="input-field col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
+        <div class="input-field col s12" >
+            <select [(ngModel)]="company" 
+      materialize="material_select" 
+      [materializeSelectOptions]="compData"> 
+      <option value="" disabled selected>Choose your option</option>
+      <option *ngFor="let comp of compData;" 
+        [value]="comp.compName">{{comp.compName}}</option>
+    </select>
+    <label>{{'company.code' | translate}}</label>
+          </div>
+    </div>
+</div> 
+   <!-- <div class="input-field  s12">
+    <select [(ngModel)]="company" 
+      materialize="material_select" 
+      [materializeSelectOptions]="compData"> 
+      <option value="" disabled selected>Choose your option</option>
+      <option *ngFor="let comp of compData;" 
+        [value]="comp.compCode">{{comp.compName}}</option>
+    </select>
+    <label>{{'company.code' | translate}}</label>
+  </div>  -->
+</div>
 <div class="row">
   <div class="col s6">
     <a class="btn col s12 m6 l2  blue right" (click)="onSave()">Save</a>

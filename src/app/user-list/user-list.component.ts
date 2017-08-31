@@ -8,7 +8,7 @@ import { UserService } from '../user.service'
   providers:[UserService]
 })
 export class UserListComponent implements OnInit {
-
+  imgUrl = "http://localhost:3000/user/profile/"
   constructor(
     private router: Router,
     private userService: UserService
@@ -19,6 +19,7 @@ export class UserListComponent implements OnInit {
   rowPerPage: number =10;
   total: number = 0;
   paging = [];
+ 
   ngOnInit() {
     this.onSearch();
   }

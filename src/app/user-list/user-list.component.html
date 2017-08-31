@@ -11,7 +11,7 @@
   </div>
 </nav>
 
-<table>
+<!-- <table>
   <thead>
     <tr>
        <th ></th>
@@ -26,8 +26,8 @@
   <tbody>
     <tr *ngFor="let usr of userData; let i=index;">
       <th ></th>
-      <th>{{usr.username}}</th>
-      <th>{{usr.type}}</th>
+      <th>{{usr.firstName}}</th>
+      <th>{{usr.lastName}}</th>
       <th>{{usr.level}}</th>
       <th> <a class="btn-floating btn blue " (click)="onEditbtnClick(usr._id)"><i class="material-icons">edit</i></a></th>
       <th>
@@ -35,12 +35,32 @@
       </th>
     </tr>
   </tbody>
-</table>
-<ul class="pagination">
+</table> -->
+ <!-- <ul class="pagination">
   <li class="waves-effect" *ngFor="let p of paging;let i = index;" 
       [ngClass]="{'active':i==numPage}" 
       (click)="gotoPage(i);"><a >{{p}}</a></li>
-</ul>
+</ul> -->
 <div class="fixed-action-btn">
   <a class="btn-floating btn right" (click)="onAddbtnClick()"><i class="material-icons">add</i></a>
 </div>
+
+
+<div class="row" >
+    <div class="col s12 m4" *ngFor="let item of userData">
+      <div class="card">
+        <div class="card-image">
+          <img [src]="imgUrl+item._id">
+          <a class="btn-floating halfway-fab waves-effect waves-light blue" (click)="onEditbtnClick(item._id)"><i class="material-icons">edit</i></a>
+        </div>
+        <div class="card-content">
+            <span class="card-title">{{item.firstName}} {{item.lastName}}</span>
+            
+          <p>{{item.email}} </p>
+        </div>
+        <div class="card-action">
+            <a class="btn red" (click)="onDelbtnClick(item._id)"><i class="material-icons left" (click)="onDelbtnClick(item._id)">delete</i>REMOVE</a>
+          </div>
+      </div>
+    </div>
+  </div>

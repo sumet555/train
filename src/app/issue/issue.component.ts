@@ -1,43 +1,49 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IssueService } from '../issue.service'
+import { IssueService } from '../issue.service';
+import{Issue} from '../shared/issue/issue';
+import { UploadService } from '../shared/user/upload.service';
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-issue',
   templateUrl: './issue.component.html',
   styleUrls: ['./issue.component.css'],
-  providers:[IssueService]
+  providers:[IssueService,UploadService]
 
 })
 export class IssueComponent implements OnInit, AfterViewInit {
-
+issue:Issue;
+imgUrl;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private issueService: IssueService,
-  ) { }
+    private uploadService: UploadService
+  ) {
+    this.issue=new Issue();
+   }
 
-  company:string="";
-  customer:string="";
-  title:string;
-  desc:string;
-  user:string="";
-  status:string="";
-  subtype:string="";
-  _datetime:string="";
-
+  // company:string="";
+  // customer:string="";
+  // title:string;
+  // desc:string;
+  // user:string="";
+  // status:string="";
+  // subtype:string="";
+  // _datetime:string="";
+  id:object;
+  filesToUpload = [];
   custData = [];
   compData=[];
   userData=[];
   statusData = [{"status":"active"},{"status":"inactive"}];
-  subtypeData = [{"id":"SubType A"},{"id":"SubType B"}];
-  id: number = 0;
+  //id: number = 0;
   mode: string = '';
   ngOnInit() {
     this.GetCompany();
     this.GetCust();
     this.GetUser();
     this.activatedRoute.params.subscribe(params => {
-     
       if (params['id']) {
         let id = params["id"];
         this.GetDataByID(id);
@@ -45,9 +51,19 @@ export class IssueComponent implements OnInit, AfterViewInit {
         this.mode = "EDIT";
       }
     });
-    setTimeout(function () {
-     Materialize.updateTextFields();
-    }, 50);
+    
+  }
+  ngAfterViewInit(){
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15, // Creates a dropdown of 15 years to control year,
+      today: 'Today',
+      clear: 'Clear',
+      close: 'Ok',
+      closeOnSelect: false // Close upon selecting a date,
+    });
+    //$('#textarea1').val('New Text');
+    $('#textarea1').trigger('autoresize');
   }
   GetCompany() {
     //Reactive
@@ -86,34 +102,20 @@ export class IssueComponent implements OnInit, AfterViewInit {
     //Reactive
     this.issueService.loadItemByID(id).subscribe(
       issue => {
-        this.company = issue.company;
-        this._datetime = issue.datetime;
-        this.customer=issue.customer;
-        this.title=issue.title;
-        this.desc=issue.desc;
-        this.user=issue.user;
-        this.status=issue.status;
-        this.subtype=issue.subtype
+      
+        this.issue=issue;
       },
       err => {
         console.log(err);
       });
   }
   onSave() {
-    let issue = {
-      company: this.company,
-      datetime: this._datetime,
-      customer:this.customer,
-      title:this.title,
-      desc:this.desc,
-      user:this.user,
-      status:this.status,
-      subtype:this.subtype
-    }
-    //alert(this.usertype);
+   
     if (this.mode === "EDIT") {
-      this.issueService.UpdateItem(this.id, issue).subscribe(
-        user => {
+      delete this.issue._id;
+      this.issueService.UpdateItem(this.id, this.issue).subscribe(
+        data => {
+
           this.router.navigate(['support', 'issue-list']);
           Materialize.toast("Update Complete", 3000);
         },
@@ -122,8 +124,10 @@ export class IssueComponent implements OnInit, AfterViewInit {
         });
     }
     else {
-      this.issueService.addItem(issue).subscribe(
-        user => { 
+      this.issueService.addItem(this.issue).subscribe(
+        data => { 
+          //this.id = data.insertedIds;
+          //this.upload();
           Materialize.toast('Add Item Complete', 3000);
           this.router.navigate(['support', 'issue-list']);
         },
@@ -138,19 +142,28 @@ export class IssueComponent implements OnInit, AfterViewInit {
   onBack() {
     this.router.navigate(['support', 'issue-list']);
   }
-
-  ngAfterViewInit(){
-    (function($){
-      $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15, // Creates a dropdown of 15 years to control year,
-        today: 'Today',
-        clear: 'Clear',
-        close: 'Ok',
-        closeOnSelect: false // Close upon selecting a date,
-      });
-      $('input#input_text, textarea#textarea1').characterCounter();
-    }); // end of jQuery name space
-      
+  fileChangeEvent(fileInput) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
   }
+  readUrl(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+  
+      reader.onload = (event) => {
+        this.imgUrl = event.target["result"];
+      }
+  
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+  upload() {
+    this.uploadService.makeFileRequest(
+      "avatar",
+      environment.apiUrl + "/user/profile/" + this.id, 
+      [], this.filesToUpload).subscribe((res) => {
+        Materialize.toast('save complete.', 1000);
+        this.router.navigate(['support', 'user-list']);
+    })
+  }
+
 }

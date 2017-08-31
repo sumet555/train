@@ -33,9 +33,9 @@ export class CompanyComponent implements OnInit {
 
       }
     });
-    setTimeout(function () {
-      Materialize.updateTextFields();
-    }, 50);
+    // setTimeout(function () {
+    //   Materialize.updateTextFields();
+    // }, 50);
   }
   GetDataByID(id) {
     //Reactive

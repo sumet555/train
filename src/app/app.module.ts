@@ -1,3 +1,4 @@
+import { MaterializeModule } from "angular2-materialize";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import  {FormsModule,ReactiveFormsModule} from '@angular/forms';
@@ -20,7 +21,14 @@ import {LoginGuardService} from './login-guard.service';
 import { TransferPipe } from './transfer.pipe';
 import {HttpModule} from '@angular/http';
 
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,11 +48,20 @@ import {HttpModule} from '@angular/http';
   
   ],
   imports: [
+    MaterializeModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [LoginGuardService],
   bootstrap: [AppComponent],

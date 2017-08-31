@@ -7,21 +7,23 @@
   <div class="row ">
       <div class="input-field inline col s12 m6 l5 xl2 offset-m3 offset-l4 offset-xl5">
          <i class="material-icons prefix">account_box</i>
-        <input id="email" type="email" class="validate" [(ngModel)]="email" minlength="1" >
-        <label for="email" data-error="please input valid email." data-success="right">Email</label>
+        <input id="email" type="email" class="validate" [(ngModel)]="login.email" minlength="1" [placeholder]="'login.holderemail'| translate">
+        <label for="email" [attr.data-error]="'login.emailerror'| translate" data-success="right">{{'login.email'| translate}}</label>
       </div>
 
   </div>
   <div class="row ">
     <div class="input-field col s12 m6 l5 xl2 offset-m3 xl2 offset-l4 offset-xl5">
       <i class="material-icons prefix">lock</i>
-      <input id="password" type="password" class="validate" [(ngModel)]="password" minlength="3" pattern="\d{3,8}" > 
-      <label for="password" data-error="password invalid">Password</label>
+      <input id="password" type="password" class="validate" [(ngModel)]="login.password" minlength="3" pattern="\d{3,8}" [placeholder]="'login.holderpassword'| translate"> 
+      <label for="password" [attr.data-error]="login.passerror">{{'login.password'| translate}}</label>
     </div>
   </div>
    <div class="row" >
-     <a class="waves-effect waves-light btn col s8 m6 l5 xl2 offset-s2 offset-m3 offset-l4 offset-xl5 blue" (click)="doLogin()" >Sign On</a>
+     <a class="waves-effect waves-light btn col s8 m6 l5 xl2 offset-s2 offset-m3 offset-l4 offset-xl5 blue" (click)="doLogin()" >{{'login.loginbtn' | translate}}</a>
    
   </div>
-<h1>{{email}}</h1>
+ 
+<!-- <h1>{{email}}</h1>
 <h1>{{password}}</h1>
+<h1>{{login|json}}<h1> -->

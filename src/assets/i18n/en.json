@@ -1,0 +1,47 @@
+{
+   "public":{
+    "home":"Home",
+    "login":"Login"
+   },
+   
+    "login":{
+        "email":"E-Mail",
+        "password":"Password",
+        "emailerror":"please input valid email.",
+        "passerror":"Invalid Password",
+        "holderemail":"please input email",
+        "holderpassword":"please input password",
+        "loginbtn":"Login"
+    },
+    "support":{
+        "company":"Company",
+        "customer":"Customer",
+        "user":"User",
+        "issue":"Issue"
+    },
+    "issuelist":{
+        "title":"Title",
+        "company":"Company",
+        "user":"User",
+        "customer":"Customer",
+        "status":"Status",
+        "edit":"Edit",
+        "delete":"Delete"
+    },
+    "company":{
+        "code":"Code",
+        "name":"Name",
+        "edit":"Edit",
+        "delete":"Delete"
+    },
+    "user":{
+        "email":"Email",
+        "firstname":"First Name",
+        "lastname":"Last Name",
+        "password":"Password",
+        "re_password":"Re-Password",
+        "mobile":"Mobile Phone",
+        "picture":"Picture"
+    }
+    
+}

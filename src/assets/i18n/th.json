@@ -1,0 +1,48 @@
+{
+    
+    "public":{
+        "home":"หน้าแรก",
+        "login":"ล็อกอิน"
+       },
+       
+        "login":{
+            "email":"อีเมล",
+            "password":"รหัสผ่าน",
+            "emailerror":"อีเมลไม่ถูกต้อง",
+            "passerror":"รหัสผ่านไม่ถูกต้อง",
+            "holderemail":"กรุณากรอกอีเมล",
+            "holderpassword":"กรุณากรอกรหัสผ่าน",
+            "loginbtn":"ล็อกอิน"
+        },
+        "support":{
+            "company":"บริษัท",
+            "customer":"ลูกค้า",
+            "user":"ผู้ใช้งาน",
+            "issue":"ปัญหา"
+        },
+        "issuelist":{
+            "title":"หัวเรื่อง",
+            "company":"บริษัท",
+            "user":"ผู้ใช้งาน",
+            "customer":"ลูกค้า",
+            "status":"สถานะ",
+            "edit":"แก้ไข",
+            "delete":"ลบ",
+            "search":"ค้นหา"
+        },
+        "company":{
+            "code":"รหัส",
+            "name":"ชื่อ",
+            "edit":"แก้ไข",
+            "delete":"ลบ"
+        },
+        "user":{
+            "email":"อีเมล",
+            "firstname":"ชื่อ",
+            "lastname":"นามสกุล",
+            "password":"รหัสผ่าน",
+            "re_password":"รหัสผ่านอีกครั้ง",
+            "mobile":"เบอร์โทรศัพท์",
+            "picture":"รูปภาพ"
+        }
+}

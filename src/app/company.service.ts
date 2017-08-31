@@ -7,8 +7,16 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class CompanyService {
-
-  constructor(private http: Http) { }
+  options:RequestOptions;
+  constructor(private http: Http) { 
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + localStorage.getItem('token')
+    });
+    this.options = new RequestOptions({ headers: headers });
+     this.options = new RequestOptions({ headers: headers });
+ 
+  }
 
 
   //get item from api
@@ -30,10 +38,10 @@ export class CompanyService {
   //post item from api
   addItem(body): Observable<any> {
     let bodyString = JSON.stringify(body); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers }); // Create a request option
+    // let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    // let options = new RequestOptions({ headers: headers }); // Create a request option
 
-    return this.http.post(`${environment.apiUrl}/company`, body, options) // ...using post request
+    return this.http.post(`${environment.apiUrl}/company`, body, this.options) // ...using post request
       .map((res: Response) => {
         return res.json()
       }) // ...and calling .json() on the response to return data
@@ -52,10 +60,10 @@ export class CompanyService {
   //put
   UpdateItem(id,body): Observable<any> {
     let bodyString = JSON.stringify(body); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers }); // Create a request option
+    //let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    
 
-    return this.http.put(`${environment.apiUrl}/company/${id}`, body, options) // ...using post request
+    return this.http.put(`${environment.apiUrl}/company/${id}`, body, this.options) // ...using post request
       .map((res: Response) => {
         return res.json()
       }) // ...and calling .json() on the response to return data
@@ -63,10 +71,10 @@ export class CompanyService {
   }
  SearchData(body){
     let bodyString = JSON.stringify(body); // Stringify payload
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers }); // Create a request option
+    // let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    // let options = new RequestOptions({ headers: headers }); // Create a request option
 
-    return this.http.post(`${environment.apiUrl}/company/search`, bodyString, options) // ...using post request
+    return this.http.post(`${environment.apiUrl}/company/search`, bodyString, this.options) // ...using post request
       .map((res: Response) => {
         return res.json()
       }) // ...and calling .json() on the response to return data
