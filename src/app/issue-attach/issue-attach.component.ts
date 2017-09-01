@@ -71,4 +71,11 @@ fileData=[];
       `${environment.apiUrl}/issue/attach/${this.id}/${fileName}`
     )
   }
+  delFile(fileName){
+    this.issueAttachService.delFile(this.id,fileName).subscribe( 
+      (fileData)=>{
+        Materialize.toast('delete complete.', 1000);
+        this.listFile();
+    } )
+  }
 }

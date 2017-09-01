@@ -16,6 +16,14 @@ export class IssueAttachService {
       })
       .catch((error: any) => Observable.throw(error));
   }
+  delFile(folderName,fileName): Observable<any[]> {
+    return this.http.get(`${environment.apiUrl}/issue/attach/delete/${folderName}/${fileName}`)
+      .map((res: Response) => {
+        return res.json();
+        
+      })
+      .catch((error: any) => Observable.throw(error));
+  }
 }
 
 
